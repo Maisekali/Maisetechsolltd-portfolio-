@@ -1,0 +1,2164 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MaiseTechsol Ltd. | Engineer Brian Maisiba Ontieri</title>
+    <meta name="description" content="I am Engineer Brian Maisiba Ontieri — electrical and communications engineer specializing in design, simulation, IoT, telecoms, fiber networking, renewable energy, and professional training." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #f2f5f9;
+            --surface: #ffffff;
+            --surface-alt: #f8fafd;
+            --primary: #0a1628;
+            --primary-light: #152238;
+            --accent: #e67e22;
+            --accent-hover: #d9731a;
+            --accent-glow: rgba(230, 126, 34, 0.25);
+            --text: #1e293b;
+            --text-soft: #475569;
+            --muted: #64748b;
+            --border: #e2e8f0;
+            --border-light: #edf2f7;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.03);
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.04), 0 2px 6px rgba(0, 0, 0, 0.02);
+            --shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.06), 0 4px 10px rgba(0, 0, 0, 0.02);
+            --radius-sm: 6px;
+            --radius: 10px;
+            --radius-lg: 16px;
+            --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+            --max-width: 1200px;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        img,
+        video {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            cursor: pointer;
+            font-family: inherit;
+            border: none;
+            background: none;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 24px;
+            width: 100%;
+        }
+
+        .mono {
+            font-family: var(--font-mono);
+            letter-spacing: -0.02em;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+
+        /* Circuit Background */
+        .circuit-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(var(--border-light) 1px, transparent 1px),
+                linear-gradient(90deg, var(--border-light) 1px, transparent 1px);
+            background-size: 40px 40px;
+            opacity: 0.35;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @media (min-width: 768px) {
+            .circuit-bg {
+                background-size: 60px 60px;
+                opacity: 0.25;
+            }
+        }
+
+        /* Scroll to Top */
+        .scroll-top-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 900;
+            background: var(--primary);
+            color: #fff;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-lg);
+            transition: all var(--transition);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+        }
+
+        .scroll-top-btn.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .scroll-top-btn:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .scroll-top-btn svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* WhatsApp Floating Button */
+        .whatsapp-fab {
+            position: fixed;
+            bottom: 90px;
+            right: 30px;
+            z-index: 1000;
+            background: #25D366;
+            color: #fff;
+            border-radius: 50px;
+            padding: 12px 22px 12px 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 8px 24px rgba(37, 211, 102, 0.35);
+            transition: all var(--transition);
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: -0.01em;
+        }
+
+        .whatsapp-fab:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 30px rgba(37, 211, 102, 0.45);
+            background: #20bd5a;
+        }
+
+        .whatsapp-icon {
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+        }
+
+        .whatsapp-label {
+            white-space: nowrap;
+        }
+
+        .whatsapp-pulse {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            width: 12px;
+            height: 12px;
+            background: #ff3b30;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(0.8);
+                opacity: 0.8;
+            }
+            50% {
+                transform: scale(1.4);
+                opacity: 0.4;
+            }
+            100% {
+                transform: scale(0.8);
+                opacity: 0.8;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .whatsapp-fab {
+                bottom: 80px;
+                right: 20px;
+                padding: 12px 18px;
+            }
+            .whatsapp-label {
+                display: none;
+            }
+        }
+
+        /* Topbar */
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(10, 22, 40, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            color: #e2e8f0;
+            transition: background 0.3s;
+        }
+
+        .topbar .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 68px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .brand img {
+            width: 42px;
+            height: 42px;
+            border-radius: var(--radius-sm);
+            object-fit: cover;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: border-color var(--transition);
+        }
+
+        .brand:hover img {
+            border-color: var(--accent);
+        }
+
+        .brand-text strong {
+            display: block;
+            font-size: 1.05rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            color: #fff;
+        }
+
+        .brand-text span {
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: #94a3b8;
+            letter-spacing: 0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: #cbd5e1;
+            transition: color var(--transition);
+            position: relative;
+            padding: 6px 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width var(--transition);
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #fff;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            padding: 6px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        .menu-btn span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: #fff;
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+
+        .menu-btn.is-open span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+        .menu-btn.is-open span:nth-child(2) {
+            opacity: 0;
+        }
+        .menu-btn.is-open span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        .topbar-progress {
+            height: 3px;
+            width: 100%;
+            background: transparent;
+            position: relative;
+        }
+
+        .topbar-progress::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 0;
+            background: var(--accent);
+            transition: width 0.1s linear;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 68px;
+                left: 0;
+                width: 100%;
+                background: rgba(10, 22, 40, 0.97);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 24px;
+                gap: 18px;
+                display: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            }
+            .nav-links.is-open {
+                display: flex;
+            }
+            .menu-btn {
+                display: flex;
+            }
+        }
+
+        /* Hero */
+        .hero {
+            background: var(--primary);
+            color: #fff;
+            position: relative;
+            padding: 60px 0 80px;
+            overflow: hidden;
+            isolation: isolate;
+        }
+
+        .hero-scanline {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.03) 0px, rgba(255, 255, 255, 0.03) 2px, transparent 2px, transparent 4px);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-copy {
+            max-width: 580px;
+        }
+
+        .eyebrow {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            letter-spacing: 0.04em;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+        }
+
+        .eyebrow-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: blink 1.5s infinite;
+        }
+
+        @keyframes blink {
+            0%,
+            100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.3;
+            }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.4rem, 6vw, 3.8rem);
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.03em;
+            margin-bottom: 20px;
+        }
+
+        .highlight {
+            color: var(--accent);
+            position: relative;
+        }
+
+        .lead {
+            font-size: 1.1rem;
+            color: #cbd5e1;
+            line-height: 1.7;
+            margin-bottom: 28px;
+        }
+
+        .hero-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 32px;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #e2e8f0;
+            transition: all var(--transition);
+        }
+
+        .badge.blue {
+            background: rgba(59, 130, 246, 0.15);
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+
+        .badge.orange {
+            background: rgba(230, 126, 34, 0.15);
+            border-color: rgba(230, 126, 34, 0.35);
+        }
+
+        .badge:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.25);
+        }
+
+        .cta-row {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 26px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all var(--transition);
+            letter-spacing: -0.01em;
+            gap: 8px;
+        }
+
+        .btn.primary {
+            background: var(--accent);
+            color: #fff;
+            box-shadow: 0 8px 18px var(--accent-glow);
+        }
+
+        .btn.primary:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 14px 24px rgba(230, 126, 34, 0.3);
+        }
+
+        .btn.secondary {
+            border: 1.5px solid rgba(255, 255, 255, 0.3);
+            color: #fff;
+            background: transparent;
+        }
+
+        .btn.secondary:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Hero Carousel */
+        .hero-media {
+            position: relative;
+        }
+
+        .carousel-wrapper {
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .carousel {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 4 / 3;
+            background: #0f172a;
+        }
+
+        .carousel-track {
+            display: flex;
+            height: 100%;
+            transition: transform 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+
+        .slide {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide img,
+        .slide video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slide-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(10, 22, 40, 0.85));
+            padding: 24px 20px 20px;
+            color: #fff;
+        }
+
+        .slide-overlay strong {
+            display: block;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .slide-overlay span {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        .carousel-progress-bar {
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .carousel-progress-fill {
+            height: 100%;
+            width: 0%;
+            background: var(--accent);
+            transition: width 0.3s linear;
+        }
+
+        .carousel-controls {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 16px;
+            background: rgba(0, 0, 0, 0.25);
+        }
+
+        .control-group {
+            display: flex;
+            gap: 8px;
+        }
+
+        .icon-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition);
+        }
+
+        .icon-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .icon-btn svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all var(--transition);
+        }
+
+        .dot.active {
+            background: var(--accent);
+            transform: scale(1.3);
+        }
+
+        .carousel-counter {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(6px);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: #fff;
+            z-index: 10;
+        }
+
+        @media (max-width: 900px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .hero-copy {
+                max-width: 100%;
+            }
+        }
+
+        /* Stats */
+        .stats {
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            padding: 36px 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            text-align: center;
+        }
+
+        .stat strong {
+            display: block;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1.2;
+            margin-bottom: 6px;
+            font-family: var(--font-mono);
+            transition: color 0.3s;
+        }
+
+        .stat span {
+            font-size: 0.85rem;
+            color: var(--muted);
+            line-height: 1.4;
+        }
+
+        @media (max-width: 700px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+        }
+
+        /* Sections */
+        .section {
+            padding: 80px 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-alt {
+            background: var(--surface-alt);
+        }
+
+        .section-head {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            color: var(--accent);
+            margin-bottom: 8px;
+            letter-spacing: 0.06em;
+        }
+
+        .section-head h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+
+        .section-head p {
+            color: var(--text-soft);
+            max-width: 600px;
+            font-size: 1.05rem;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 36px;
+        }
+
+        @media (max-width: 768px) {
+            .grid-3,
+            .grid-2 {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            transition: all var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: #cbd5e1;
+        }
+
+        .mini {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 12px;
+            opacity: 0.9;
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .card p {
+            color: var(--text-soft);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .tag-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .tag {
+            background: #f1f5f9;
+            color: var(--primary-light);
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 16px;
+            letter-spacing: 0.02em;
+            transition: all var(--transition);
+        }
+
+        .tag.orange {
+            background: #fff3e0;
+            color: var(--accent);
+        }
+
+        .tag:hover {
+            background: #e2e8f0;
+        }
+
+        .panel {
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 18px;
+            align-items: flex-start;
+        }
+
+        .timeline-year {
+            background: var(--primary);
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 20px;
+            white-space: nowrap;
+            letter-spacing: 0.04em;
+        }
+
+        .timeline-item h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .timeline-item p {
+            color: var(--text-soft);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .skill-top {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .skill-top span {
+            color: var(--muted);
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+        }
+
+        .bar {
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .bar span {
+            display: block;
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), #f59e0b);
+            border-radius: 10px;
+            transition: width 1s ease;
+        }
+
+        .section-card {
+            background: var(--surface-alt);
+            border-radius: var(--radius);
+            padding: 18px;
+        }
+
+        /* Projects */
+        .project-filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .filter-btn {
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border: 1.5px solid var(--border);
+            background: var(--surface);
+            color: var(--text-soft);
+            transition: all var(--transition);
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+        }
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .project {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            transition: all var(--transition);
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .project:hover {
+            box-shadow: var(--shadow-lg);
+            border-color: var(--accent);
+            transform: translateY(-4px);
+        }
+
+        .project-header {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .project-number {
+            font-family: var(--font-mono);
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--accent);
+            opacity: 0.7;
+        }
+
+        .project h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+        }
+
+        .project p {
+            font-size: 0.9rem;
+            color: var(--text-soft);
+        }
+
+        .projects-add-hint {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .add-project-card {
+            border: 2px dashed var(--border);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            background: rgba(255, 255, 255, 0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            color: var(--muted);
+        }
+
+        @media (max-width: 640px) {
+            .projects {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 22, 40, 0.7);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+
+        .modal-overlay.is-open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            max-width: 520px;
+            width: 90%;
+            padding: 32px;
+            position: relative;
+            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.3);
+            transform: translateY(30px);
+            transition: transform 0.3s;
+        }
+
+        .modal-overlay.is-open .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #f1f5f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background var(--transition);
+        }
+
+        .modal-close:hover {
+            background: #e2e8f0;
+        }
+
+        .modal-number {
+            font-size: 0.85rem;
+            color: var(--accent);
+            margin-bottom: 6px;
+        }
+
+        .modal-body h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .modal-body p {
+            color: var(--text-soft);
+            margin-bottom: 18px;
+        }
+
+        .modal-details {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        /* Contact */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 36px;
+            align-items: start;
+        }
+
+        .contact-card {
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .form-row {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        label {
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-bottom: 6px;
+            display: block;
+            color: var(--text);
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius);
+            font-family: var(--font-sans);
+            font-size: 0.95rem;
+            background: #fff;
+            transition: border-color var(--transition);
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-glow);
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-feedback {
+            margin-top: 12px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .contact-info {
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            border: 1px solid var(--border);
+        }
+
+        .info-line {
+            margin-bottom: 14px;
+            font-size: 0.95rem;
+            color: var(--text-soft);
+        }
+
+        .info-line strong {
+            color: var(--primary);
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        @media (max-width: 700px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: #94a3b8;
+            padding: 28px 0;
+            font-size: 0.85rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-row {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        /* Reveal Animations */
+        [data-reveal] {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        [data-reveal].revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .hero {
+                padding: 40px 0 60px;
+            }
+            .section {
+                padding: 56px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="circuit-bg" aria-hidden="true"></div>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/254712836067?text=Hello%20Engineer%20Brian%2C%20I%20visited%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20project."
+    class="whatsapp-fab"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Chat with me on WhatsApp">
+        <svg class="whatsapp-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+        </svg>
+        <span class="whatsapp-label">Chat on WhatsApp</span>
+        <span class="whatsapp-pulse"></span>
+    </a>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Scroll to top">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
+
+    <!-- Topbar -->
+    <header class="topbar" id="topbar">
+        <div class="container nav">
+            <a class="brand" href="#home" aria-label="Home">
+                <img src="assets/logo.jpg" alt="MaiseTechsol Ltd. logo" />
+                <div class="brand-text">
+                    <strong>MaiseTechsol Ltd.</strong>
+                    <span>Engineer Brian Maisiba Ontieri</span>
+                </div>
+            </a>
+            <nav class="nav-links" id="navLinks">
+                <a href="#about" data-nav>About</a>
+                <a href="#services" data-nav>Services</a>
+                <a href="#projects" data-nav>Projects</a>
+                <a href="#training" data-nav>Training</a>
+                <a href="#skills" data-nav>Skills</a>
+                <a href="#contact" data-nav>Contact</a>
+            </nav>
+            <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+        <div class="topbar-progress" id="topbarProgress"></div>
+    </header>
+
+    <main id="home">
+        <!-- Hero -->
+        <section class="hero">
+            <div class="container hero-grid">
+                <div class="hero-copy">
+                    <div class="eyebrow">
+                        <span class="eyebrow-dot"></span> Electrical & Communications Engineer • Portfolio
+                    </div>
+                    <h1>I design. I simulate. <span class="highlight">I build.</span> I deploy.</h1>
+                    <p class="lead">
+                        I am <strong>Engineer Brian Maisiba Ontieri</strong>, an electrical and communications engineer dedicated to delivering end-to-end engineering solutions — from project design and simulation through to development, deployment, and hands-on training.
+                    </p>
+                    <div class="hero-badges">
+                        <div class="badge blue">Engineering project design, simulation & development</div>
+                        <div class="badge orange">Electrical blueprints, layouts & estimates</div>
+                        <div class="badge">IoT & embedded systems</div>
+                        <div class="badge">Fiber networking & telecoms</div>
+                    </div>
+                    <div class="cta-row">
+                        <a class="btn primary" href="#projects">View My Projects</a>
+                        <a class="btn secondary" href="#contact">Get In Touch</a>
+                    </div>
+                </div>
+                <div class="hero-media">
+                    <div class="carousel-wrapper">
+                        <div class="carousel" id="carousel" aria-label="Portfolio media carousel" aria-roledescription="carousel">
+                            <div class="carousel-track" id="carouselTrack">
+                                <div class="slide active" data-type="image" role="group" aria-roledescription="slide" aria-label="Slide 1 of 3">
+                                    <img src="assets/logo.jpg" alt="MaiseTechsol Ltd. brand identity" loading="eager" />
+                                    <div class="slide-overlay">
+                                        <strong>My brand identity</strong>
+                                        <span>The official portfolio identity representing my engineering brand.</span>
+                                    </div>
+                                </div>
+                                <div class="slide" data-type="image" role="group" aria-roledescription="slide" aria-label="Slide 2 of 3">
+                                    <img src="assets/sketch.jpg" alt="Portfolio concept sketch" loading="lazy" />
+                                    <div class="slide-overlay">
+                                        <strong>My portfolio concept map</strong>
+                                        <span>The original draft structure I refined into this digital layout.</span>
+                                    </div>
+                                </div>
+                                <div class="slide" data-type="video" role="group" aria-roledescription="slide" aria-label="Slide 3 of 3">
+                                    <video src="assets/intro.mp4" muted loop playsinline preload="metadata"></video>
+                                    <div class="slide-overlay">
+                                        <strong>My engineering reel</strong>
+                                        <span>A motion introduction highlighting my core services and capabilities.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-progress-bar" id="carouselProgressBar">
+                            <div class="carousel-progress-fill" id="carouselProgressFill"></div>
+                        </div>
+                        <div class="carousel-controls">
+                            <div class="control-group">
+                                <button class="icon-btn" id="prevBtn" aria-label="Previous slide">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                                </button>
+                                <button class="icon-btn" id="nextBtn" aria-label="Next slide">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                </button>
+                            </div>
+                            <div class="dots" id="dots" aria-label="Carousel pagination"></div>
+                            <div class="control-group">
+                                <button class="icon-btn" id="playBtn" aria-label="Pause autoplay" title="Pause autoplay">
+                                    <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
+                                    <svg class="pause-icon" viewBox="0 0 24 24" fill="currentColor" style="display:none;"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="carousel-counter" id="carouselCounter">
+                            <span class="mono">01</span><span class="mono"> / 03</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-scanline" aria-hidden="true"></div>
+        </section>
+
+        <!-- Stats -->
+        <section class="stats" id="statsSection">
+            <div class="container stats-grid">
+                <div class="stat" data-stat>
+                    <strong><span class="count" data-target="8">0</span>+</strong>
+                    <span>Engineering and technical focus areas I cover</span>
+                </div>
+                <div class="stat" data-stat>
+                    <strong><span class="count" data-target="4">0</span></strong>
+                    <span>Core pillars driving my work: design, simulation, development, deployment</span>
+                </div>
+                <div class="stat" data-stat>
+                    <strong>Hands-on</strong>
+                    <span>Practical expertise in IoT, telecoms, fiber, and renewable energy</span>
+                </div>
+                <div class="stat" data-stat>
+                    <strong>Training</strong>
+                    <span>I lecture, tutor, consult, and mentor across engineering disciplines</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- About -->
+        <section class="section" id="about">
+            <div class="container">
+                <div class="section-head">
+                    <div>
+                        <div class="section-label mono">// 01</div>
+                        <h2>About me</h2>
+                        <p>
+                            I built this digital portfolio to reflect my engineering expertise in a polished, technical format — ready for clients, employers, academic panels, and project presentations.
+                        </p>
+                    </div>
+                </div>
+                <div class="grid-3">
+                    <article class="card" data-reveal>
+                        <div class="mini mono">01</div>
+                        <h3>Engineering systems</h3>
+                        <p>I specialise in electrical and communications engineering with a strong focus on real-world implementation, design accuracy, and reliable delivery.</p>
+                        <div class="tag-row">
+                            <span class="tag">Blueprints</span><span class="tag">Layouts</span><span class="tag">Estimates</span>
+                        </div>
+                    </article>
+                    <article class="card" data-reveal>
+                        <div class="mini mono">02</div>
+                        <h3>Digital engineering</h3>
+                        <p>I design and develop websites, program embedded systems, and build visualisation tools that support engineering brands and technical projects.</p>
+                        <div class="tag-row">
+                            <span class="tag">WordPress</span><span class="tag">VS Code</span><span class="tag">PHP</span>
+                        </div>
+                    </article>
+                    <article class="card" data-reveal>
+                        <div class="mini mono">03</div>
+                        <h3>Practical training</h3>
+                        <p>I teach, tutor, and consult for students and professional teams in electronics, control systems, programming, telecommunications, and energy systems.</p>
+                        <div class="tag-row">
+                            <span class="tag">Lecturing</span><span class="tag">Tutoring</span><span class="tag">Consulting</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services -->
+        <section class="section section-alt" id="services">
+            <div class="container">
+                <div class="section-head">
+                    <div>
+                        <div class="section-label mono">// 02</div>
+                        <h2>What I offer</h2>
+                        <p>These are the professional services and capabilities I deliver, grounded in real experience and presented here for clients and collaborators.</p>
+                    </div>
+                </div>
+                <div class="grid-2">
+                    <div class="panel" data-reveal>
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-year mono">Design</div>
+                                <div>
+                                    <h4>Electrical blueprint, layout and estimate preparation</h4>
+                                    <p>I produce clear, practical documentation for electrical and communications work, supporting planning, execution, and independent review.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-year mono">Build</div>
+                                <div>
+                                    <h4>IoT and embedded systems design & implementation</h4>
+                                    <p>I create microcontroller-based monitoring and automation solutions with practical integration, thorough testing, and reliable deployment.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-year mono">Connect</div>
+                                <div>
+                                    <h4>Fiber networking and telecommunications</h4>
+                                    <p>I handle fiber installation, optical splicing, network configuration, GSM, 4G/5G, BTS links, and telecom fundamentals.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-year mono">Power</div>
+                                <div>
+                                    <h4>Renewable energy and solar power solutions</h4>
+                                    <p>I design and implement solar power systems with a focus on practical, scalable, and energy-conscious outcomes.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel" data-reveal>
+                        <div class="skills-list">
+                            <div class="skill">
+                                <div class="skill-top"><strong>Engineering project design, simulation and development</strong><span class="mono">96%</span></div>
+                                <div class="bar"><span style="width: 96%"></span></div>
+                            </div>
+                            <div class="skill">
+                                <div class="skill-top"><strong>Web design and development</strong><span class="mono">90%</span></div>
+                                <div class="bar"><span style="width: 90%"></span></div>
+                            </div>
+                            <div class="skill">
+                                <div class="skill-top"><strong>IoT, embedded and automation systems</strong><span class="mono">94%</span></div>
+                                <div class="bar"><span style="width: 94%"></span></div>
+                            </div>
+                            <div class="skill">
+                                <div class="skill-top"><strong>Fiber networking and telecoms</strong><span class="mono">88%</span></div>
+                                <div class="bar"><span style="width: 88%"></span></div>
+                            </div>
+                        </div>
+                        <div class="section-card" style="margin-top:18px;">
+                            <h3 style="margin-top:0;">Tools and platforms I use</h3>
+                            <p style="color:var(--muted); line-height:1.8; margin:0;">
+                                WordPress, VS Code, Microsoft Expression, PHP, Arduino, MikroTik, ThingSpeak, and electrical engineering software as needed for design, simulation, and delivery.
+                            </p>
+                            <div class="tag-row">
+                                <span class="tag">WordPress</span><span class="tag">VS Code</span><span class="tag">ThingSpeak</span><span class="tag">MikroTik</span><span class="tag orange">Arduino</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects -->
+        <section class="section" id="projects">
+            <div class="container">
+                <div class="section-head">
+                    <div>
+                        <div class="section-label mono">// 03</div>
+                        <h2>My selected projects</h2>
+                        <p>A professional showcase of my engineering work — click any project card to see full details.</p>
+                    </div>
+                    <div class="project-filter-bar" id="projectFilterBar">
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="IoT">IoT</button>
+                        <button class="filter-btn" data-filter="Embedded">Embedded</button>
+                        <button class="filter-btn" data-filter="Automation">Automation</button>
+                        <button class="filter-btn" data-filter="Solar">Solar</button>
+                        <button class="filter-btn" data-filter="RFID">RFID</button>
+                    </div>
+                </div>
+                <div class="projects" id="projectsContainer"></div>
+                <div class="projects-add-hint" data-reveal>
+                    <div class="add-project-card">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="40" height="40" aria-hidden="true">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="8" x2="12" y2="16"></line>
+                            <line x1="8" y1="12" x2="16" y2="12"></line>
+                        </svg>
+                        <p>I am continually expanding this section — more projects are being added as my portfolio grows.</p>
+                        <span class="mono" style="font-size:0.8rem;color:var(--muted);">New project entries can be added to the projectsData array in the script.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Modal -->
+        <div class="modal-overlay" id="projectModal" aria-hidden="true">
+            <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+                <button class="modal-close" id="modalClose" aria-label="Close modal">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+                <div class="modal-body">
+                    <div class="modal-number mono" id="modalNumber"></div>
+                    <h3 id="modalTitle"></h3>
+                    <p id="modalDescription"></p>
+                    <div class="tag-row" id="modalTags"></div>
+                    <div class="modal-details" id="modalDetails"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Training -->
+        <section class="section section-alt" id="training">
+            <div class="container">
+                <div class="section-head">
+                    <div>
+                        <div class="section-label mono">// 04</div>
+                        <h2>Training and mentorship</h2>
+                        <p>Drawn from the training and lecturing work I deliver, refined here for a professional portfolio audience.</p>
+                    </div>
+                </div>
+                <div class="grid-2">
+                    <div class="card" data-reveal>
+                        <div class="mini mono">T1</div>
+                        <h3>Technical training modules</h3>
+                        <p>
+                            I deliver practical training in electrical blueprints and layout design, IoT and embedded system design, renewable energy and solar power,
+                            web design and development, fiber networking, and telecommunications.
+                        </p>
+                        <div class="tag-row">
+                            <span class="tag">4G / 5G</span><span class="tag">GSM</span><span class="tag">Fiber</span><span class="tag">Solar</span>
+                        </div>
+                    </div>
+                    <div class="card" data-reveal>
+                        <div class="mini mono">T2</div>
+                        <h3>Lecturing and tutoring support</h3>
+                        <p>
+                            I lecture and tutor in engineering mathematics, circuit theory, electrical machines, control engineering, programming, and electronics —
+                            always in a practical, student-friendly style.
+                        </p>
+                        <div class="tag-row">
+                            <span class="tag">Mathematics</span><span class="tag">Circuits</span><span class="tag">Control</span><span class="tag">Programming</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills -->
+        <section class="section" id="skills">
+            <div class="container">
+                <div class="section-head">
+                    <div>
+                        <div class="section-label mono">// 05</div>
+                        <h2>My skills at a glance</h2>
+                        <p>A quick reference to my core technical capabilities — keeping the overview professional and to the point.</p>
+                    </div>
+                </div>
+                <div class="grid-3">
+                    <article class="card" data-reveal>
+                        <div class="mini mono">S1</div>
+                        <h3>Electrical engineering</h3>
+                        <p>I prepare blueprints, layouts, and estimates; I design power systems and solar solutions; and I deliver applied electrical engineering work.</p>
+                    </article>
+                    <article class="card" data-reveal>
+                        <div class="mini mono">S2</div>
+                        <h3>Communications engineering</h3>
+                        <p>I work across telecommunications, fiber networking, GSM, 4G/5G, BTS links, and network configuration.</p>
+                    </article>
+                    <article class="card" data-reveal>
+                        <div class="mini mono">S3</div>
+                        <h3>Digital development</h3>
+                        <p>I design and develop websites, write embedded code, create dashboards, and build professional engineering portfolios.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section class="section section-alt" id="contact">
+            <div class="container">
+                <div class="section-head">
+                    <div>
+                        <div class="section-label mono">// 06</div>
+                        <h2>Get in touch</h2>
+                        <p>I welcome enquiries from clients, academic collaborators, and project partners. Use the form below to reach me directly.</p>
+                    </div>
+                </div>
+                <div class="contact-grid">
+                    <div class="contact-card" data-reveal>
+                        <form id="contactForm">
+                            <div class="form-row">
+                                <div>
+                                    <label for="name">Your name</label>
+                                    <input id="name" name="name" type="text" placeholder="Enter your name" required />
+                                </div>
+                                <div>
+                                    <label for="email">Your email</label>
+                                    <input id="email" name="email" type="email" placeholder="Enter your email" required />
+                                </div>
+                                <div>
+                                    <label for="message">Your message</label>
+                                    <textarea id="message" name="message" placeholder="Tell me about your project, training needs, or collaboration idea" required></textarea>
+                                </div>
+                                <button class="btn primary" type="submit">
+                                    <span class="btn-text">Send Message</span>
+                                    <span class="btn-loading" style="display:none;">Sending…</span>
+                                </button>
+                            </div>
+                            <div class="form-feedback" id="formFeedback" style="display:none;"></div>
+                        </form>
+                    </div>
+                    <div class="contact-info" data-reveal>
+                        <div class="info-line"><strong>Portfolio name:</strong> MaiseTechsol Ltd.</div>
+                        <div class="info-line"><strong>My focus:</strong> Electrical & communications engineering, web development, IoT, telecoms, fiber networking, and consultancy.</div>
+                        <div class="info-line"><strong>My working style:</strong> Design, simulation, development, testing, deployment, and training support.</div>
+                        <div class="info-line"><strong>Email:</strong> brayomaisiba@gmail.com</div>
+                        <div class="info-line"><strong>WhatsApp:</strong> +254 712 836 067</div>
+                        <div class="info-line"><strong>Best use:</strong> Client proposals, project showcases, interviews, academic presentations, and engineering service branding.</div>
+                        <a href="https://wa.me/254712836067?text=Hello%20Engineer%20Brian%2C%20I%20visited%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20project."
+                        class="btn primary"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style="margin-top:18px;width:100%;text-align:center;display:flex;align-items:center;justify-content:center;gap:8px;">
+                            <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+                            </svg>
+                            Chat with me on WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-row">
+            <div>© <span id="year"></span> MaiseTechsol Ltd. All rights reserved.</div>
+            <div>Engineered with a clean blue-and-orange visual identity.</div>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            // ============ DOM REFS ============
+            const menuBtn = document.getElementById('menuBtn');
+            const navLinks = document.getElementById('navLinks');
+            const topbarProgress = document.getElementById('topbarProgress');
+            const scrollTopBtn = document.getElementById('scrollTopBtn');
+            const carouselTrack = document.getElementById('carouselTrack');
+            const dotsContainer = document.getElementById('dots');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const playBtn = document.getElementById('playBtn');
+            const carouselCounter = document.getElementById('carouselCounter');
+            const carouselProgressFill = document.getElementById('carouselProgressFill');
+            const projectModal = document.getElementById('projectModal');
+            const modalClose = document.getElementById('modalClose');
+            const modalNumber = document.getElementById('modalNumber');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalDescription = document.getElementById('modalDescription');
+            const modalTags = document.getElementById('modalTags');
+            const modalDetails = document.getElementById('modalDetails');
+            const projectsContainer = document.getElementById('projectsContainer');
+            const projectFilterBar = document.getElementById('projectFilterBar');
+            const contactForm = document.getElementById('contactForm');
+            const formFeedback = document.getElementById('formFeedback');
+            const yearSpan = document.getElementById('year');
+            const navLinkElements = document.querySelectorAll('.nav-links a[data-nav]');
+
+            // ============ YEAR ============
+            yearSpan.textContent = new Date().getFullYear();
+
+            // ============ MOBILE MENU ============
+            menuBtn.addEventListener('click', () => {
+                const isOpen = navLinks.classList.toggle('is-open');
+                menuBtn.classList.toggle('is-open');
+                menuBtn.setAttribute('aria-expanded', isOpen);
+                menuBtn.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+            });
+
+            navLinkElements.forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('is-open');
+                    menuBtn.classList.remove('is-open');
+                    menuBtn.setAttribute('aria-expanded', 'false');
+                    menuBtn.setAttribute('aria-label', 'Open menu');
+                });
+            });
+
+            // ============ TOPBAR SCROLL PROGRESS ============
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.scrollY;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+                topbarProgress.style.setProperty('--progress', progress + '%');
+                topbarProgress.style.background = `linear-gradient(to right, var(--accent) ${progress}%, transparent ${progress}%)`;
+
+                // Scroll to top button
+                if (scrollTop > 500) {
+                    scrollTopBtn.classList.add('visible');
+                } else {
+                    scrollTopBtn.classList.remove('visible');
+                }
+
+                // Active nav link
+                updateActiveNavLink();
+            });
+
+            scrollTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // ============ ACTIVE NAV LINK ============
+            function updateActiveNavLink() {
+                const sections = document.querySelectorAll('section[id]');
+                let currentId = '';
+                sections.forEach(section => {
+                    const rect = section.getBoundingClientRect();
+                    if (rect.top <= 120 && rect.bottom >= 120) {
+                        currentId = section.id;
+                    }
+                });
+                navLinkElements.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + currentId) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            // ============ CAROUSEL ============
+            const slides = carouselTrack.querySelectorAll('.slide');
+            const totalSlides = slides.length;
+            let currentSlide = 0;
+            let autoplayInterval = null;
+            let isPlaying = true;
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            // Build dots
+            for (let i = 0; i < totalSlides; i++) {
+                const dot = document.createElement('span');
+                dot.classList.add('dot');
+                if (i === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => goToSlide(i));
+                dotsContainer.appendChild(dot);
+            }
+            const allDots = dotsContainer.querySelectorAll('.dot');
+
+            function updateCarousel() {
+                carouselTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
+                allDots.forEach((d, i) => d.classList.toggle('active', i === currentSlide));
+                const counterSpans = carouselCounter.querySelectorAll('span');
+                if (counterSpans.length >= 2) {
+                    counterSpans[0].textContent = String(currentSlide + 1).padStart(2, '0');
+                    counterSpans[1].textContent = ' / ' + String(totalSlides).padStart(2, '0');
+                }
+                const progressPercent = ((currentSlide + 1) / totalSlides) * 100;
+                carouselProgressFill.style.width = progressPercent + '%';
+
+                // Handle video playback
+                slides.forEach((slide, i) => {
+                    const video = slide.querySelector('video');
+                    if (video) {
+                        if (i === currentSlide && isPlaying) {
+                            video.play().catch(() => {});
+                        } else {
+                            video.pause();
+                            video.currentTime = 0;
+                        }
+                    }
+                });
+            }
+
+            function goToSlide(index) {
+                currentSlide = index;
+                updateCarousel();
+                resetAutoplay();
+            }
+
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                updateCarousel();
+                resetAutoplay();
+            }
+
+            function prevSlide() {
+                currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                updateCarousel();
+                resetAutoplay();
+            }
+
+            function togglePlay() {
+                isPlaying = !isPlaying;
+                const playIcon = playBtn.querySelector('.play-icon');
+                const pauseIcon = playBtn.querySelector('.pause-icon');
+                if (isPlaying) {
+                    playIcon.style.display = 'block';
+                    pauseIcon.style.display = 'none';
+                    playBtn.setAttribute('aria-label', 'Pause autoplay');
+                    playBtn.setAttribute('title', 'Pause autoplay');
+                    startAutoplay();
+                    const activeVideo = slides[currentSlide].querySelector('video');
+                    if (activeVideo) activeVideo.play().catch(() => {});
+                } else {
+                    playIcon.style.display = 'none';
+                    pauseIcon.style.display = 'block';
+                    playBtn.setAttribute('aria-label', 'Play autoplay');
+                    playBtn.setAttribute('title', 'Play autoplay');
+                    stopAutoplay();
+                    const activeVideo = slides[currentSlide].querySelector('video');
+                    if (activeVideo) activeVideo.pause();
+                }
+            }
+
+            function startAutoplay() {
+                stopAutoplay();
+                if (isPlaying) {
+                    autoplayInterval = setInterval(nextSlide, 4000);
+                }
+            }
+
+            function stopAutoplay() {
+                if (autoplayInterval) {
+                    clearInterval(autoplayInterval);
+                    autoplayInterval = null;
+                }
+            }
+
+            function resetAutoplay() {
+                if (isPlaying) {
+                    stopAutoplay();
+                    startAutoplay();
+                }
+            }
+
+            prevBtn.addEventListener('click', prevSlide);
+            nextBtn.addEventListener('click', nextSlide);
+            playBtn.addEventListener('click', togglePlay);
+
+            // Touch support
+            carouselTrack.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+
+            carouselTrack.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                const diff = touchStartX - touchEndX;
+                if (Math.abs(diff) > 50) {
+                    if (diff > 0) nextSlide();
+                    else prevSlide();
+                }
+            });
+
+            // Keyboard support
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') prevSlide();
+                if (e.key === 'ArrowRight') nextSlide();
+            });
+
+            // Initialize carousel
+            updateCarousel();
+            startAutoplay();
+
+            // ============ PROJECTS DATA ============
+            const projectsData = [
+                {
+                    id: 'P1',
+                    title: 'Smart cattle dip monitoring and control',
+                    description: 'An IoT-enabled monitoring system for a cattle dip with humidity-channel control and dose monitoring, designed for reliable field use.',
+                    tags: ['IoT', 'Automation', 'Monitoring'],
+                    categories: ['IoT', 'Automation'],
+                    details: 'This project involved designing and deploying a sensor network to monitor dip conditions in real time, ensuring accurate dosing and environmental control. Built with Arduino-based microcontrollers and connected via GSM for remote alerts.'
+                },
+                {
+                    id: 'P2',
+                    title: 'Wearable pulse and temperature monitor',
+                    description: 'A real-time health monitoring concept using embedded sensing and alerting for practical portable monitoring applications.',
+                    tags: ['Embedded', 'Sensors', 'Real-time'],
+                    categories: ['Embedded'],
+                    details: 'I developed a compact wearable device that continuously tracks pulse rate and body temperature. The system triggers alerts when readings exceed safe thresholds and logs data for later analysis.'
+                },
+                {
+                    id: 'P3',
+                    title: 'RFID-based attendance and access control',
+                    description: 'An RFID system concept for attendance, identity verification, and controlled access in institutional environments.',
+                    tags: ['RFID', 'Access Control', 'Attendance'],
+                    categories: ['RFID'],
+                    details: 'This solution uses RFID tags and readers to automate attendance tracking and door access. I designed the backend database integration and the embedded firmware for real-time identity verification.'
+                },
+                {
+                    id: 'P4',
+                    title: 'Intelligent automation and energy systems',
+                    description: 'Practical prototype work spanning automation, solar power, electrical engineering, and software-assisted development.',
+                    tags: ['Solar', 'Automation', 'Control'],
+                    categories: ['Solar', 'Automation'],
+                    details: 'A multi-disciplinary project combining solar panel management with intelligent load switching. I integrated charge controllers, inverters, and a microcontroller-based automation unit for optimal energy use.'
+                },
+                {
+                    id: 'P5',
+                    title: 'Smart irrigation controller with soil moisture sensing',
+                    description: 'An automated irrigation system that uses soil moisture sensors and weather data to optimise water usage.',
+                    tags: ['IoT', 'Automation', 'Embedded'],
+                    categories: ['IoT', 'Automation', 'Embedded'],
+                    details: 'I built a controller that reads multiple soil moisture sensors and activates irrigation valves only when necessary. The system includes a web dashboard for monitoring and manual override.'
+                }
+            ];
+
+            function renderProjects(filter = 'all') {
+                projectsContainer.innerHTML = '';
+                const filtered = filter === 'all' ?
+                    projectsData :
+                    projectsData.filter(p => p.categories.includes(filter));
+
+                if (filtered.length === 0) {
+                    projectsContainer.innerHTML =
+                        '<p style="text-align:center;color:var(--muted);grid-column:1/-1;padding:40px;">No projects match this filter. Try another category.</p>';
+                    return;
+                }
+
+                filtered.forEach(project => {
+                    const article = document.createElement('article');
+                    article.classList.add('project');
+                    article.setAttribute('data-reveal', '');
+                    article.innerHTML = `
+                        <div class="project-header">
+                            <div class="project-number mono">${project.id}</div>
+                            <div>
+                                <h3>${project.title}</h3>
+                                <p>${project.description}</p>
+                            </div>
+                        </div>
+                        <div class="tag-row">
+                            ${project.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+                        </div>
+                    `;
+                    article.addEventListener('click', () => openProjectModal(project));
+                    projectsContainer.appendChild(article);
+                    // Trigger reveal
+                    requestAnimationFrame(() => {
+                        article.classList.add('revealed');
+                    });
+                });
+            }
+
+            function openProjectModal(project) {
+                modalNumber.textContent = project.id;
+                modalTitle.textContent = project.title;
+                modalDescription.textContent = project.description;
+                modalTags.innerHTML = project.tags.map(t => `<span class="tag">${t}</span>`).join('');
+                modalDetails.textContent = project.details || 'Further details about this project are available upon request.';
+                projectModal.classList.add('is-open');
+                projectModal.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeProjectModal() {
+                projectModal.classList.remove('is-open');
+                projectModal.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+            }
+
+            modalClose.addEventListener('click', closeProjectModal);
+            projectModal.addEventListener('click', (e) => {
+                if (e.target === projectModal) closeProjectModal();
+            });
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && projectModal.classList.contains('is-open')) {
+                    closeProjectModal();
+                }
+            });
+
+            // Filter buttons
+            projectFilterBar.addEventListener('click', (e) => {
+                if (e.target.classList.contains('filter-btn')) {
+                    projectFilterBar.querySelectorAll('.filter-btn').forEach(b => b.classList.remove(
+                        'active'));
+                    e.target.classList.add('active');
+                    renderProjects(e.target.dataset.filter);
+                }
+            });
+
+            // Initial render
+            renderProjects();
+
+            // ============ CONTACT FORM ============
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const message = document.getElementById('message').value.trim();
+                const btnText = contactForm.querySelector('.btn-text');
+                const btnLoading = contactForm.querySelector('.btn-loading');
+
+                if (!name || !email || !message) {
+                    formFeedback.style.display = 'block';
+                    formFeedback.style.color = '#dc2626';
+                    formFeedback.textContent = 'Please fill in all fields before sending.';
+                    return;
+                }
+
+                // Simulate sending
+                btnText.style.display = 'none';
+                btnLoading.style.display = 'inline';
+                const submitBtn = contactForm.querySelector('button[type="submit"]');
+                submitBtn.disabled = true;
+
+                setTimeout(() => {
+                    const mailtoLink =
+                        `mailto:brayomaisiba@gmail.com?subject=Portfolio enquiry from ${encodeURIComponent(name)}&body=${encodeURIComponent(message)}%0A%0A—%20Sent via portfolio contact form%0AReply to: ${encodeURIComponent(email)}`;
+                    window.location.href = mailtoLink;
+
+                    formFeedback.style.display = 'block';
+                    formFeedback.style.color = '#16a34a';
+                    formFeedback.textContent =
+                        'Thank you! Your email client should open. If not, email me directly at brayomaisiba@gmail.com.';
+                    contactForm.reset();
+                    btnText.style.display = 'inline';
+                    btnLoading.style.display = 'none';
+                    submitBtn.disabled = false;
+
+                    setTimeout(() => {
+                        formFeedback.style.display = 'none';
+                    }, 8000);
+                }, 800);
+            });
+
+            // ============ REVEAL ON SCROLL ============
+            const revealElements = document.querySelectorAll('[data-reveal]');
+
+            function revealOnScroll() {
+                const windowHeight = window.innerHeight;
+                revealElements.forEach(el => {
+                    const rect = el.getBoundingClientRect();
+                    if (rect.top < windowHeight - 60) {
+                        el.classList.add('revealed');
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', revealOnScroll, { passive: true });
+            revealOnScroll(); // initial check
+
+            // ============ STATS COUNTER ============
+            const statElements = document.querySelectorAll('[data-stat] .count');
+
+            function animateStats() {
+                statElements.forEach(el => {
+                    const target = parseInt(el.dataset.target);
+                    if (!target || el.dataset.animated) return;
+                    el.dataset.animated = 'true';
+                    let current = 0;
+                    const increment = target / 30;
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= target) {
+                            current = target;
+                            clearInterval(timer);
+                        }
+                        el.textContent = Math.floor(current);
+                    }, 40);
+                });
+            }
+
+            const statsSection = document.getElementById('statsSection');
+            let statsAnimated = false;
+            const statsObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !statsAnimated) {
+                        statsAnimated = true;
+                        animateStats();
+                    }
+                });
+            }, { threshold: 0.5 });
+            if (statsSection) statsObserver.observe(statsSection);
+
+            // ============ SMOOTH SCROLL FOR ALL ANCHOR LINKS ============
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href === '#') return;
+                    const target = document.querySelector(href);
+                    if (target) {
+                        e.preventDefault();
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+
+            console.log('%c🚀 MaiseTechsol Ltd. Portfolio Ready %c| %cEngineer Brian Maisiba Ontieri',
+                'color:#e67e22;font-weight:bold;', '', 'color:#94a3b8;');
+            console.log('%c📱 WhatsApp: +254 712 836 067 %c| %c📧 brayomaisiba@gmail.com',
+                'color:#25D366;', '', 'color:#94a3b8;');
+            console.log('%c💡 Tip: You can add more projects by editing the projectsData array in the script.',
+                'color:#f59e0b;');
+        })();
+    </script>
+</body>
+</html>
